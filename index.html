@@ -96,8 +96,8 @@
                 const irAE = -1.778 + 0.243 * Tph + 0.374 * Tfh - 1.867 * (Th1 / Th2) + 0.748 * (Tc1 / Tc2);
                 const irAE_2_4 = -2.465 + 0.096 * Tph + 0.624 * Tfh + 0.193 * (Th1 / Th2) + 1.126 * (Tc1 / Tc2);
 
-                $('#result1').text(irAE.toFixed(2));
-                $('#result2').text(irAE_2_4.toFixed(2));
+                $('#result1').text(irAE.toFixed(3));
+                $('#result2').text(irAE_2_4.toFixed(3));
             });
         });
     </script>
@@ -108,27 +108,27 @@
         <form id="multiplyForm">
             <div class="form-group">
                 <label for="Tph">Tph:</label>
-                <input type="number" id="Tph" name="Tph" step="0.01" required>
+                <input type="number" id="Tph" name="Tph" step="0.001" required>
             </div>
             <div class="form-group">
                 <label for="Th2">Th2:</label>
-                <input type="number" id="Th2" name="Th2" step="0.01" required>
+                <input type="number" id="Th2" name="Th2" step="0.001" required>
             </div>
             <div class="form-group">
                 <label for="Tfh">Tfh:</label>
-                <input type="number" id="Tfh" name="Tfh" step="0.01" required>
+                <input type="number" id="Tfh" name="Tfh" step="0.001" required>
             </div>
             <div class="form-group">
                 <label for="Tc1">Tc1:</label>
-                <input type="number" id="Tc1" name="Tc1" step="0.01" required>
+                <input type="number" id="Tc1" name="Tc1" step="0.001" required>
             </div>
             <div class="form-group">
                 <label for="Th1">Th1:</label>
-                <input type="number" id="Th1" name="Th1" step="0.01" required>
+                <input type="number" id="Th1" name="Th1" step="0.001" required>
             </div>
             <div class="form-group">
                 <label for="Tc2">Tc2:</label>
-                <input type="number" id="Tc2" name="Tc2" step="0.01" required>
+                <input type="number" id="Tc2" name="Tc2" step="0.001" required>
             </div>
             <input type="submit" value="Calculate">
         </form>
