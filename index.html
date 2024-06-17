@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>irAE Occurrence Risk Prediction System</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 60%;
+        }
+        h1 {
+            color: #333333;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            grid-column: span 2;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            text-align: left;
+            font-size: 16px;
+        }
+        .result-label {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .result-box {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $('#multiplyForm').on('submit', function(event) {
+                event.preventDefault();
+                
+                const Tph = parseFloat($('#Tph').val());
+                const Tfh = parseFloat($('#Tfh').val());
+                const Th1 = parseFloat($('#Th1').val());
+                const Th2 = parseFloat($('#Th2').val());
+                const Tc1 = parseFloat($('#Tc1').val());
+                const Tc2 = parseFloat($('#Tc2').val());
+
+                const irAE = -1.778 + 0.243 * Tph + 0.374 * Tfh - 1.867 * (Th1 / Th2) + 0.748 * (Tc1 / Tc2);
+                const irAE_2_4 = -2.465 + 0.096 * Tph + 0.624 * Tfh + 0.193 * (Th1 / Th2) + 1.126 * (Tc1 / Tc2);
+
+                $('#result1').text(irAE.toFixed(2));
+                $('#result2').text(irAE_2_4.toFixed(2));
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Each grade irAE occurrence risk prediction system</h1>
+        <form id="multiplyForm">
+            <div>
+                <label for="Tph">Tph:</label>
+                <input type="number" id="Tph" name="Tph" step="0.01" required>
+            </div>
+            <div>
+                <label for="Th2">Th2:</label>
+                <input type="number" id="Th2" name="Th2" step="0.01" required>
+            </div>
+            <div>
+                <label for="Tfh">Tfh:</label>
+                <input type="number" id="Tfh" name="Tfh" step="0.01" required>
+            </div>
+            <div>
+                <label for="Tc1">Tc1:</label>
+                <input type="number" id="Tc1" name="Tc1" step="0.01" required>
+            </div>
+            <div>
+                <label for="Th1">Th1:</label>
+                <input type="number" id="Th1" name="Th1" step="0.01" required>
+            </div>
+            <div>
+                <label for="Tc2">Tc2:</label>
+                <input type="number" id="Tc2" name="Tc2" step="0.01" required>
+            </div>
+            <input type="submit" value="Calculate">
+        </form>
+        <div class="results">
+            <div class="result-label">Probability of irAE:</div>
+            <div class="result-box" id="result1"></div>
+            <div class="result-label">Probability of 2-4 grade irAE:</div>
+            <div class="result-box" id="result2"></div>
+        </div>
+    </div>
+</body>
+</html>
